@@ -1,0 +1,115 @@
+
+        
+import java.io.IOException;
+import java.util.*;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+        
+public class code2 {
+        
+ public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
+    private final static IntWritable one = new IntWritable(1);
+    private Text word = new Text();
+        
+    public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+    	String hobbies[]={"Aircraft","Art antique collecting","Astrology","Baseball","Basketball","Bicycling","Boating sailing","Book reading ","Camping hiking","Casino vacation","Clothing","Cooking","Cosmetics","Cruise vacation","Electronics","Fashion","Fishing","Fitness","Football","Golf","History","Hockey","Home furnishings","Household pets","Hunting","Jewelry","Scuba","Shoes","Swimming pool","Tennis"};
+    	int hobbyx=0;
+    	int hobbyy=0;
+    	int intx=0;
+    	int inty=0;
+    	float distance=0.0f;
+    	int index=0;
+    	int loc[][]=new int[30][2];
+    	loc[0][0]=56;loc[0][1]=74;
+    	loc[1][0]=93;loc[1][1]=39;
+    	loc[2][0]=60;loc[2][1]=1;
+    	loc[3][0]=36;loc[3][1]=85;
+    	loc[4][0]=60;loc[4][1]=49;
+    	loc[5][0]=82;loc[5][1]=59;
+    	loc[6][0]=86;loc[6][1]=22;
+    	loc[7][0]=31;loc[7][1]=23;
+    	loc[8][0]=22;loc[8][1]=73;
+    	loc[9][0]=34;loc[9][1]=25;
+    	loc[10][0]=33;loc[10][1]=98;
+    	loc[11][0]=33;loc[11][1]=78;
+    	loc[12][0]=53;loc[12][1]=85;
+    	loc[13][0]=79;loc[13][1]=50;
+    	loc[14][0]=13;loc[14][1]=69;
+    	loc[15][0]=48;loc[15][1]=79;
+    	loc[16][0]=88;loc[16][1]=33;
+    	loc[17][0]=4;loc[17][1]=22;
+    	loc[18][0]=90;loc[18][1]=32;
+    	loc[19][0]=33;loc[19][1]=55;
+    	loc[20][0]=32;loc[20][1]=70;
+    	loc[21][0]=67;loc[21][1]=75;
+    	loc[22][0]=19;loc[22][1]=14;
+    	loc[23][0]=9;loc[23][1]=91;
+    	loc[24][0]=81;loc[24][1]=63;
+    	loc[25][0]=52;loc[25][1]=35;
+    	loc[26][0]=9;loc[26][1]=56;
+    	loc[27][0]=40;loc[27][1]=58;
+    	loc[28][0]=41;loc[28][1]=14;
+    	loc[29][0]=85;loc[29][1]=74;
+    	String user_hobby="";
+        String line = value.toString();
+		String[] line_split=line.split(",");
+		user_hobby=line_split[2];
+		hobbyx=Integer.parseInt(line_split[3]);
+		hobbyy=Integer.parseInt(line_split[4]);
+		for (int i=0;i<=29;i++)
+			{if(user_hobby.equals(hobbies[i]))
+				{index=i;
+				intx=loc[i][0];
+				inty=loc[i][1];
+				break;
+				}
+			}
+		distance=(float)Math.sqrt((intx-hobbyx)*(intx-hobbyx)+(inty-hobbyy)*(inty-hobbyy));
+		if (distance<=5)
+		{
+			context.write(new Text(user_hobby), one);
+		}
+    }
+ } 
+        
+ public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
+
+    public void reduce(Text key, Iterable<IntWritable> values, Context context) 
+      throws IOException, InterruptedException {
+        int sum = 0;
+        for (IntWritable val : values) {
+            sum += val.get();
+        }
+        context.write(key, new IntWritable(sum));
+    }
+ }
+        
+ public static void main(String[] args) throws Exception {
+    Configuration conf = new Configuration();
+        
+        Job job = new Job(conf, "q1");
+        job.setJarByClass(code3.class);
+    
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
+        
+    job.setMapperClass(Map.class);
+    job.setReducerClass(Reduce.class);
+        
+    job.setInputFormatClass(TextInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+        
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        
+    job.waitForCompletion(true);
+ }
+        
+}
