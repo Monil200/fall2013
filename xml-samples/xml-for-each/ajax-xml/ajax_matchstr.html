@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+var xmlhttp;
+var xmldoc;
+var row;
+var i=0;
+var thtml;
+function loadXMLDoc()
+{
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+  {//alert(xmlhttp.readyState);
+  if (xmlhttp.readyState==4)
+    {
+    xmldoc=xmlhttp.responseXML;	   
+    }
+  }
+xmlhttp.open("GET","tennis.xml",true);
+xmlhttp.send();
+}
+function display(index)
+{loadXMLDoc();
+row=xmldoc.getElementsByTagName("player");
+thtml="<table border='1'><tr><th>Name</th><th>Rank</th><th>Titles</th><th>GS Count</th></tr> ";
+thtml+="<tr><td>";
+thtml+=row[i].getElementsByTagName("name")[0].childNodes[0].nodeValue;
+thtml+="</td><td>";
+thtml+=row[i].getElementsByTagName("rank")[0].childNodes[0].nodeValue;
+thtml+="</td><td>";
+thtml+=row[i].getElementsByTagName("titles")[0].childNodes[0].nodeValue;
+thtml+="</td><td>";
+thtml+=row[i].getElementsByTagName("gs")[0].childNodes[0].nodeValue;
+thtml+="</td></tr>";
+thtml+="</table>";
+document.getElementById("tennistable").innerHTML=thtml;
+}
+function next()
+{
+if(i==3)
+	{i=0;
+	display(i);
+	i++;	
+	}
+else
+	{i++;
+	display(i);	
+	}
+}
+function previous()
+{
+if (i==-1)
+	{
+	i=3;	
+	display(i);
+	i--;
+	}
+else
+	{
+	display(i);	
+	i--;
+	}
+}
+</script>
+</head>
+<body onload="display(0)">
+<div id="myDiv"><h2>Let AJAX change this table</h2></div>
+<div id="tennistable" height="200" width="300">
+</div>
+<button type="button" onclick="next()">next</button>
+<button type="button" onclick="previous()">previous</button>
+</body>
+</html>

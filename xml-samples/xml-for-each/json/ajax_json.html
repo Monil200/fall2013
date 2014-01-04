@@ -1,0 +1,52 @@
+<html>
+<head>
+<title>Monil-JSON-Parsing-with-.json</title>
+<script>
+var xmlhttp;
+var xmldoc;
+var jsonObj;
+function fetchJSON()
+{
+xmlhttp=new XMLHttpRequest();
+xmlhttp.onreadystatechange=function()
+{if (xmlhttp.readyState==4)
+	{
+	xmldoc=xmlhttp.responseText;
+	//alert(xmldoc);
+	jsonObj=JSON.parse(xmldoc);
+	//alert(jsonObj.players.length);
+	display();
+	}
+}
+xmlhttp.open("GET","tennis.json",true);
+xmlhttp.send();
+}
+
+function display()
+{var txt;
+txt="<table border='1'>";
+txt+="<tr><th>Name</th><th>Rank</th><th>titles</th><th>GS</th></tr>"; 
+for (i=0;i<jsonObj.players.length;i++)
+	{txt+="<tr><td>"
+	txt+=jsonObj.players[i].name;
+	txt+="</td><td>";
+	txt+=jsonObj.players[i].rank;
+	txt+="</td><td>";
+	txt+=jsonObj.players[i].titles;
+	txt+="</td><td>";
+	txt+=jsonObj.players[i].gs;
+	txt+="</td></tr>";
+	}
+txt+="</table>";
+document.getElementById("jsonarea").innerHTML=txt;
+}
+</script>
+</head>
+<body>
+<h2> This Data is extracted from the .json file</h2>
+<div id="jsonarea" height="600" width="550">
+</div>
+<br>
+<input type="button" value="Get JSON" onclick="fetchJSON()">
+</body>
+</html>

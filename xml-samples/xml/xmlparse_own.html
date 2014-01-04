@@ -1,0 +1,31 @@
+<html>
+<head>
+<title>Monil-XML-DOM-JAVASCRIPT</title>
+</head>
+<body>
+<script>
+xmlhttp=new XMLHttpRequest();
+xmlhttp.open("GET","tennis.xml",false);
+xmlhttp.send();
+xmldoc=xmlhttp.responseXML;
+var x=xmldoc.getElementsByTagName("player");
+document.write("<h2><center>This is simple XML parsing</center> </h2>");
+//document.write(xmldoc.getElementsByTagName("player").getEelementsByTagName("name")[0].childNodes[0].nodeValue+"<br>");
+document.write("<table border='1'>");
+document.write("<tr><th>Name</th><th>Rank</th><th>titles</th><th>GS</th></tr>");
+for(i=0;i<x.length;i++)
+	{
+	document.write("<tr><td>");
+	document.write(x[i].getElementsByTagName("name")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("rank")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("titles")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("gs")[0].childNodes[0].nodeValue);
+	document.write("</td></tr>");
+	}
+document.write("</table>");
+</script>
+</body>
+</html>
