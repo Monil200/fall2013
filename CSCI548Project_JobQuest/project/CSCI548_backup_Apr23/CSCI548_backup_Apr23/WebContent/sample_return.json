@@ -1,0 +1,37 @@
+"results": {
+    "collection": [
+      {
+        "job_title": {
+          "href": "http://www.jobdiagnosis.com/fencodejbs.php?rurl=1ae966f4e39611bb28ebe7a3ece4843b2e0559d5e349cd39d8d4a50f5e08741196c360aead12b17a3287807aeb10e9d099cc56c133eb73994ea872668a07e4f762e22b2a3f0564ee70efb34a8030758d18b5999201268975f9c53f56b330801c8785&title=Small+Business+Sales+-+Entry+Level+%28base+%2B+uncapped+commissions%29&location=Los Angeles&state=CA&company=ADP&aff_id=VHM&sub_id=VHM&cname=joblur&payout=0.18&jobid=joblur&cat=20",
+          "text": "Small Business Sales - Entry Level (base + uncapped commissions)"
+        },       
+        "job_date": "2014-03-24",      
+        "cname": {
+          "href": "http://www.glassdoor.com/Overview/Working-at-DHL-Express-EI_IE38615.11,22.htm",
+          "text": "DHL Express"
+        },        
+        "curl": "www.dhl.com",
+        "chq": "Bonn, Germany",
+        "cstock": "",
+        "crating": "2.8",
+        "csatisfaction": "Employees say it's “OK”",
+        "ceo_name": "Ken Allen",
+		"source": "jobdiagnosis/glassdoor";
+        "ceo_rating": "71%",
+        "csalary": {
+          "href": "http://www.glassdoor.com/Salary/DHL-Express-Salaries-E38615.htm",
+          "text": "Salaries"
+        },
+        "creviews": {
+          "href": "http://www.glassdoor.com/Reviews/DHL-Express-Reviews-E38615.htm",
+          "text": "Reviews"
+        },
+        "cinterviews": {
+          "href": "http://www.glassdoor.com/Interview/DHL-Express-Interview-Questions-E38615.htm",
+          "text": "Interviews"
+        }
+      },
+      {},
+      {},
+    ]
+}

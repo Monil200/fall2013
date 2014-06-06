@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>Assignment 4</title>
+</head>
+<script>
+var xmlhttp;
+var xmldoc;
+function parse()
+{
+var xmlurl=document.forms["xmlparse"]["url"].value;
+xmlurl=xmlurl.trim();
+if(xmlurl.length==0)
+	{alert("Please enter a URL.");
+	return;
+	}
+if (window.XMLHttpRequest)
+	xmlhttp=new XMLHttpRequest();				
+else
+	xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");			
+try	
+	{xmlhttp.open("GET",xmlurl,false);
+	xmlhttp.send();	
+	if(xmlhttp.status===404)
+		{alert("File not found");
+		return;}
+	}
+catch(error)
+	{
+	alert("Error in XML File");
+	return;
+	}
+	
+xmldoc=xmlhttp.responseXML;
+	//checking firefox error
+	if(xmldoc.documentElement.nodeName === "parsererror")
+		{
+			alert("Error in XML file");
+			return;
+		}
+var x=xmldoc.getElementsByTagName("PLANT");
+var win=window.open("","goo","height=200,width=200,scrollbars=1,toolbar=1");
+win.document.write("<center><table border='1'>");
+win.document.write("<tr><th>COMMON</th><th>BOTANICAL</th><th>ZONE</th><th>LIGHT</th><th>PRICE</th><th>IMAGE</th></tr>");
+for(i=0;i<x.length;i++)
+	{		
+	win.document.write("<tr><td>");
+	if(x[i].getElementsByTagName("COMMON")[0])
+		{if(x[i].getElementsByTagName("COMMON")[0].childNodes[0]==null)
+			{win.document.write("N/A</td></td>"); 
+			}
+		else
+			{
+			win.document.write(x[i].getElementsByTagName("COMMON")[0].childNodes[0].nodeValue);
+			win.document.write("</td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td>"); 				
+	if(x[i].getElementsByTagName("BOTANICAL")[0])
+		{if(x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0]==null)
+			{win.document.write("N/A</td><td>"); 
+			}
+		else
+			{
+			win.document.write(x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0].nodeValue);
+			win.document.write("</td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td>"); 				
+	if(x[i].getElementsByTagName("ZONE")[0])
+		{if(x[i].getElementsByTagName("ZONE")[0].childNodes[0]==null)
+			{win.document.write("N/A</td><td>"); 
+			}
+		else
+			{
+			win.document.write(x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0].nodeValue);
+			win.document.write("</td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td>"); 	
+	if(x[i].getElementsByTagName("LIGHT")[0])
+		{if(x[i].getElementsByTagName("LIGHT")[0].childNodes[0]==null)
+			{win.document.write("N/A</td><td>"); 
+			}
+		else
+			{
+			win.document.write(x[i].getElementsByTagName("LIGHT")[0].childNodes[0].nodeValue);
+			win.document.write("</td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td><span>"); 				
+	if(x[i].getElementsByTagName("PRICE")[0])
+		{if(x[i].getElementsByTagName("PRICE")[0].childNodes[0]==null)
+			{win.document.write("N/A</span></td><td>"); 
+			}
+		else
+			{
+			win.document.write(x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue);
+			win.document.write("</span></td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td>"); 				
+	if(x[i].getElementsByTagName("IMAGE")[0])
+		{if(x[i].getElementsByTagName("IMAGE")[0].childNodes[0]==null)
+			{win.document.write("N/A</td><td>"); 
+			}
+		else
+			{
+			win.document.write("<img src="+x[i].getElementsByTagName("IMAGE")[0].childNodes[0].nodeValue+" height=200 width=200>");
+			win.document.write("</td><td>");
+			}
+		}
+	else		
+		win.document.write("N/A</td><td>"); 
+	//document.write("<img src="+x[i].getElementsByTagName("IMAGE")[0].childNodes[0].nodeValue+" height=200 width=200>");
+	//document.write("</td></tr>");	
+	}
+win.document.write("</table></center>");
+}
+</script>
+<body>
+<form name="xmlparse">
+<center> <br><br>
+	Enter URL for Plant Catalog XML File<br><br>
+	<input type="text" name="url"><br><br>
+	<input type="button" value="Submit Query" onclick="parse()" <br><br>
+</center>
+<NOSCRIPT>
+</body>
+</html>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO8859-1" ?>
+<CATALOG>
+  <PLANT>
+    <COMMON>Bloodroot</COMMON>
+    <BOTANICAL>Sanguinaria canadensis</BOTANICAL>
+    <ZONE>4</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$2.44</PRICE>
+    <IMAGE>sanguinaria.canadensis.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Columbine</COMMON>
+    <BOTANICAL>Aquilegia canadensis</BOTANICAL>
+    <ZONE>3</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$9.37</PRICE>
+    <IMAGE>aquilegia.canadensis.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Marsh Marigold</COMMON>
+    <BOTANICAL>Caltha palustris</BOTANICAL>
+    <ZONE>4</ZONE>
+    <LIGHT>Mostly Sunny</LIGHT>
+    <PRICE>$6.81</PRICE>
+    <IMAGE>caltha.palustris.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Dutchman's-Breeches</COMMON>
+    <BOTANICAL>Diecentra cucullaria</BOTANICAL>
+    <ZONE>3</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$6.44</PRICE>
+    <IMAGE>diecentra.cucullaria.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Ginger, Wild</COMMON>
+    <BOTANICAL>Asarum canadense</BOTANICAL>
+    <ZONE>3</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$9.03</PRICE>
+    <IMAGE>asarum.canadense.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Hepatica</COMMON>
+    <BOTANICAL>Hepatica americana</BOTANICAL>
+    <ZONE>4</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$4.45</PRICE>
+    <IMAGE>hepatica.americana.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Jack-In-The-Pulpit</COMMON>
+    <BOTANICAL>Arisaema triphyllum</BOTANICAL>
+    <ZONE>4</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$3.23</PRICE>
+    <IMAGE>arisaema.triphyllum.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Mayapple</COMMON>
+    <BOTANICAL>Podophyllum peltatum</BOTANICAL>
+    <ZONE>3</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$2.98</PRICE>
+    <IMAGE>podophullum.peltatum.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Phlox, Woodland</COMMON>
+    <BOTANICAL>Phlox divaricata</BOTANICAL>
+    <ZONE>3</ZONE>
+    <LIGHT>Sun or Shade</LIGHT>
+    <PRICE>$2.80</PRICE>
+    <IMAGE>phlox.divaricata.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Spring-Beauty</COMMON>
+    <BOTANICAL>Claytonia Virginica</BOTANICAL>
+    <ZONE>7</ZONE>
+    <LIGHT>Mostly Shady</LIGHT>
+    <PRICE>$6.59</PRICE>
+    <IMAGE>claytonia.virginica.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Trillium</COMMON>
+    <BOTANICAL>Trillium grandiflorum</BOTANICAL>
+    <ZONE>5</ZONE>
+    <LIGHT>Sun or Shade</LIGHT>
+    <PRICE>$3.90</PRICE>
+    <IMAGE>trillium.grandiflorum.jpg</IMAGE>
+  </PLANT>
+  
+  <PLANT>
+    <COMMON>Violet, Dog-Tooth</COMMON>
+    <BOTANICAL>Erythronium americanum</BOTANICAL>
+    <ZONE>4</ZONE>
+    <LIGHT>Shade</LIGHT>
+    <PRICE>$9.04</PRICE>
+    <IMAGE>erythronium.americanum.jpg</IMAGE>
+  </PLANT>
+  

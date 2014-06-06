@@ -1,0 +1,471 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="shortcut icon" href="favicon.ico" >
+<title>Yahoo! Stocks-2867287495</title>
+<meta name="robots" content="noindex, nofollow" />
+<script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+	<style>
+	#top
+	{position: relative;
+	margin-top: 75px;
+	margin-left: 120px
+
+	}
+	#cname
+	{
+		position: absolute;		
+		margin-top: 10px;
+		font-size: 26px;
+		font-weight: bold;
+		color:white;
+
+	}	
+	#cfigures
+	{
+		position: absolute;		
+		margin-top: 40px;
+		font-size: 26px;
+		font-weight: bold;
+		color:white;
+	}
+	#simage
+	{
+		position: absolute;		
+		height:180px;
+		width:300px;
+		margin-left: 705px;
+
+	}
+	#fb
+	{	position: absolute;		
+		margin-top: 100px;		
+		height:25px;
+		width:80px;
+		visibility: hidden;
+	}
+	#idrule
+	{position: absolute;		
+	margin-top: 225px;
+	width:81%;
+	height: 10px;
+	visibility: hidden;
+	color:white;
+	}
+	#error
+	{position: absolute;		
+	margin-top: 100px;
+	font-size: 26px;
+	font-weight: bold;
+	margin-left: 250px;	
+	visibility: hidden;
+	color:white;
+	}
+	#searchbox
+	{
+	position:relative;
+	margin-left: 225px;
+	margin-top: 25px;
+	}
+	hr.rule 
+	{position:absolute;
+    height: 2px;
+    background-color:white;  
+    width:100%;    
+	}
+	#bottom
+	{position: relative;
+	margin-top: 350px;
+	margin-left: 120px;
+	width:75%;
+	visibility: hidden;
+	}
+	#bottomerror
+	{position: absolute;		
+	margin-top: 235px;
+	font-size: 26px;
+	font-weight: bold;
+	margin-left: 300px;	
+	visibility: hidden;
+	color:white;
+	}
+	body
+	{
+	background-image:url('stock_bg2.jpg');	
+	background-repeat:no-repeat;	
+	}
+	
+</style>
+	<script>
+	//===fb
+	function postFacebook()
+	{
+		FB.ui(
+	      {
+	       method: 'feed',	       
+	       name: cname,
+	       link: 'http://finance.yahoo.com/q?s='+csymbol,
+	       picture: ''+simg,	      
+	       caption: 'Stock Information of '+cname+'('+csymbol+')',
+	       description: (
+	          'Last Trade Price '+ltprice+',Change: '+changetype+change+'('+changep.substring(1)+')')	        
+	      },
+	      function(response) {	      	
+	      	//alert(response.post_id);	      	
+	      	console.log(response);
+	        if (response && response.post_id) {
+        	alert('Post was published.');
+    		} else {
+       		alert('Post was not published.');
+   			}    
+	      }
+	    );		
+ 	} 	
+	//==FB
+	var tope=0;
+ 	var bot=0;
+	var res=new Array();
+	var YAHOO = {
+        Finance: {
+            SymbolSuggest: {}
+        }
+    };
+    //====YUI
+    var i;                      
+    YUI().use('jsonp', 'jsonp-url','autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function (Y) {    
+  	Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
+    resultHighlighter: 'phraseMatch',
+    activateFirstItem: 'true',
+    circular: 'true',
+    tabSelect:'true',
+    resultFilters: 'phraseMatch',
+    source: function (query,callback){
+    $(document).ready(function(){           
+        var query;
+        query = document.getElementById("ac-input").value;        
+        if (query.length > 0)
+        {
+          $.ajax({
+              type: "GET",
+              url: "http://d.yimg.com/autoc.finance.yahoo.com/autoc",
+              data: {query: query},
+              dataType: "jsonp",
+              jsonp : "callback",
+              jsonpCallback: "YAHOO.Finance.SymbolSuggest.ssCallback",
+          });         
+          YAHOO.Finance.SymbolSuggest.ssCallback = function (data) {                        
+            for(i=0;i<JSON.stringify(data.ResultSet.Result.length);i++)
+                {res[i]=data.ResultSet.Result[i].symbol+", "+data.ResultSet.Result[i].name+" ("+data.ResultSet.Result[i].exch+")";
+                }           
+            callback(res);
+          }
+        }
+
+    }); 
+  },  
+});
+Y.one("#ac-input").ac.on("select", function() {
+	//alert("hi-select");
+	document.getElementById("ac-input").value=res[0];
+    connectServlet(); //TODO: REMOVE DEBUGGING
+});
+Y.one("#ac-input").ac.on("click", function() {
+	//document.getElementById("ac-input").value=res[i];
+	//alert("hi-click");
+    connectServlet(); //TODO: REMOVE DEBUGGING
+});
+});
+    //====YUI
+	
+	var req=false;	
+ 	function connectServlet()
+ 	{
+ 	var c=document.getElementById("ac-input").value;//sanity part
+ 	c=c.trim(); 	 	
+	var regspace=/\s+/g
+	if(c.length==0)
+		{alert("Please enter a Company Symbol.");
+		document.getElementById("top").style.visibility="hidden";
+		document.getElementById("bottom").style.visibility="hidden";
+		document.getElementById("bottomerror").style.visibility="hidden";		
+		document.getElementById("fb").style.visibility="hidden";
+		document.getElementById("simage").style.visibility="hidden";
+		document.getElementById("cfigures").style.visibility="hidden";
+		document.getElementById("cname").style.visibility="hidden";
+		document.getElementById("idrule").style.visibility="hidden"
+		//document.getElementById("error").style.visibility="visible";
+		return false;
+		}	
+	if(c.indexOf(",")==-1)
+		{if(regspace.test(c)==true)
+			{alert("Please enter a valid Company Symbol.");
+			document.getElementById("top").style.visibility="hidden";
+			document.getElementById("bottom").style.visibility="hidden";
+			document.getElementById("bottomerror").style.visibility="hidden";		
+			document.getElementById("fb").style.visibility="hidden";
+			document.getElementById("simage").style.visibility="hidden";
+			document.getElementById("cfigures").style.visibility="hidden";
+			document.getElementById("cname").style.visibility="hidden";
+			document.getElementById("idrule").style.visibility="hidden"
+			//document.getElementById("error").style.visibility="visible";
+			return false;
+			}	
+		}
+	if(c.indexOf(",")>0)
+		c=c.substring(0,c.indexOf(","));				
+	else 
+		c=c.trim();
+	//alert(c);
+	//request part
+	//url="http://localhost:8080/Assignmnet8_test/StockXML?symbol="+c;;
+	url="http://cs-server.usc.edu:12211/examples/servlet/StockXML?symbol="+c;
+	if (window.XMLHttpRequest)
+		req=new XMLHttpRequest();				
+	else
+		req=new ActiveXObject("Microsoft.XMLHTTP");			
+	if(req)
+		{req.open("GET",url,true);				
+		req.onreadystatechange = fetch;
+		//req.setRequestHeader("Connection", "Close");
+		//req.setRequestHeader("Method", "GET" + url + "HTTP/1.1");	
+		req.send(null);	
+		}
+	else
+		{
+			return false;
+		}
+	
+		return true;
+ 	}
+ 	var cname,csymbol,ltprice,change,changetype,changep,simg;
+ 	
+ 	//callback
+ 	function fetch()
+ 	{bot=0;top=0;	
+ 	//alert("status="+req.status+" readyState="+req.readyState);	
+			if(req.status==200 && req.readyState==4)						
+				{try
+					{
+					var stockinfo=JSON.parse(req.responseText);		
+					}
+				catch(error)
+					{
+					document.getElementById("fb").style.visibility="hidden";
+					document.getElementById("simage").style.visibility="hidden";
+					document.getElementById("cfigures").style.visibility="hidden";
+					document.getElementById("cname").style.visibility="hidden";
+					document.getElementById("bottom").style.visibility="hidden";
+					document.getElementById("idrule").style.visibility="hidden";
+					document.getElementById("error").style.visibility="visible";
+					document.getElementById("quote").innerHTML="Stock Information Not Available";
+					return;
+					}							
+					if(stockinfo.result.News.Item[0].Title=="Yahoo! Finance: RSS feed not found")
+						{bot=1;							
+						}
+					//if(stockinfo.result.Quote.Change==0.00 && stockinfo.result.Quote.LastTradePriceOnly==0.00) //|| stockinfo.result.Quote.Change==0.00)
+					//if(!stockinfo.result.Quote.Change)	
+					if(stockinfo.result.Quote.Change==0.00 && stockinfo.result.Quote.PreviousClose==0.00 && stockinfo.result.Quote.ChangeInPercent==0.00 && stockinfo.result.Quote.ChangeType.length==0 && stockinfo.result.Quote.LastTradePriceOnly==0.00)	
+						{tope=1;
+						}					
+					/*alert(stockinfo.result.Quote.Change==0.00+"change");
+					alert(stockinfo.result.Quote.ChangeInPercent==0.00+"chng p");
+					alert(stockinfo.result.Quote.PreviousClose==0.00+"pclose");
+					alert(stockinfo.result.Quote.ChangeType.length+"+/- length");
+					alert(stockinfo.result.Quote.LastTradePriceOnly==0.00+"--ltp");*/
+					//if(stockinfo.result.Quote.ChangeInPercent=="")
+					if(tope==1)
+						{document.getElementById("fb").style.visibility="hidden";
+						document.getElementById("simage").style.visibility="hidden";
+						document.getElementById("cfigures").style.visibility="hidden";
+						document.getElementById("cname").style.visibility="hidden";
+						document.getElementById("idrule").style.visibility="hidden";
+						document.getElementById("error").style.visibility="visible";																
+						}
+					else if(tope==0)
+						{document.getElementById("top").style.visibility="visible";											
+						document.getElementById("idrule").style.visibility="visible"
+						document.getElementById("error").style.visibility="hidden"
+						document.getElementById("fb").style.visibility="visible";
+						document.getElementById("simage").style.visibility="visible";
+						document.getElementById("cfigures").style.visibility="visible";
+						document.getElementById("cname").style.visibility="visible";						
+
+						var doc = eval('(' + req.responseText + ')');					
+						cname=stockinfo.result.Name;
+						csymbol=stockinfo.result.Symbol;
+						changetype=stockinfo.result.Quote.ChangeType;
+						change=stockinfo.result.Quote.Change;
+						changep=stockinfo.result.Quote.ChangeInPercent;
+						ltprice=stockinfo.result.Quote.LastTradePriceOnly;
+						var open=stockinfo.result.Quote.Open;
+						var ylow=stockinfo.result.Quote.YearLow;
+						var yhigh=stockinfo.result.Quote.YearHigh;
+						var vol=stockinfo.result.Quote.Volume;
+						var oneytp=stockinfo.result.Quote.OneYearTargetPrice;
+						var bid=stockinfo.result.Quote.Bid;
+						var dlow=stockinfo.result.Quote.DaysLow;
+						var dhigh=stockinfo.result.Quote.DaysHigh;
+						var ask=stockinfo.result.Quote.Ask;
+						var avgdv=stockinfo.result.Quote.AverageDailyVolume;
+						var pclose=stockinfo.result.Quote.PreviousClose;
+						var mcap=stockinfo.result.Quote.MarketCapitalization;
+						simg=decodeURIComponent(stockinfo.result.StockChartImageURL);											
+						document.getElementById("cname").innerHTML=cname+"("+csymbol+")";//setting name
+						document.getElementById("simage").innerHTML="<img src="+simg+">";//setting image						
+						if(changetype=="+" || changetype=="" || changetype==null)
+							{
+							var fig=ltprice+"&nbsp;&nbsp;<img src=http://www-scf.usc.edu/~csci571/2014Spring/hw6/up_g.gif height='22' width='17'><font color='#5CE62E'>"+change+"("+changep.substring(1)+")</font>";							
+							}
+						else if(changetype=="-")
+							{
+								var fig=ltprice+"&nbsp;&nbsp;<img src=http://www-scf.usc.edu/~csci571/2014Spring/hw6/down_r.gif height='22' width='17'><font color='red'>"+change+"("+changep.substring(1)+")</font>";								
+							}
+						if(change==0.00)
+							{var fig=ltprice+"&nbsp;&nbsp;<font color='#5CE62E'>"+change+"("+changep+")</font>";								
+							}
+						document.getElementById("cfigures").innerHTML=fig; //setting figures in top div
+						var table="<table width=100%>";
+						table+=		 "<tr>";
+						table+=		 "<td width='30%'> Prev Close:</td>";
+						table+=		 "<td width='10%'>"+pclose+"</td>";
+						table+=		 "<td width='40%'> Days Range:</td>";
+						table+=		 "<td width='20%' align='right'>"+dlow+" - "+dhigh+"</td>";
+						table+=	"</tr>";
+						table+=	"<tr>";
+						table+=		 "<td width='30%'> Open:</td>";
+						table+=		 "<td width='10%'>"+open+"</td>";
+						table+=		 "<td width='40%'> 52wk Range:</td>";
+						table+=		 "<td width='20%' align='right'>"+ylow+" - "+yhigh+"</td>";
+						table+="</tr>";
+						table+=	"<tr>";
+						table+=		 "<td width='30%'> Bid:</td>";
+						table+=		 "<td width='10%'>"+bid+"</td>";
+						table+=		 "<td width='40%'> Volume:</td>";
+						table+=		 "<td width='20%' align='right'>"+vol+"</td>";
+						table+=	"</tr>";
+						table+=	"<tr>";
+						table+=		 "<td width='30%'> Ask:</td>";
+						table+=		 "<td width='10%'>"+ask+"</td>";
+						table+=		 "<td width='40%'> Avg Vol(3m):</td>";
+						table+=		 "<td width='20%' align='right'>"+avgdv+"</td>";
+						table+= "</tr>";
+						table+= "<tr>";
+						table+=		 "<td width='30%'> 1y Target Est:</td>";
+						table+=		 "<td width='10%'>"+oneytp+"</td>";
+						table+=		 "<td width='40%'> Market Cap:</td>";
+						table+=		 "<td width='20%' align='right'>"+mcap+"</td>";
+						table+=	"</tr>";
+						table+= "</table>";
+						document.getElementById("quote").innerHTML=table;
+						if(bot==1)
+							{
+							document.getElementById("bottom").style.visibility="visible";
+							document.getElementById("demo").style.visible='visible';								
+							document.getElementById("news").innerHTML="News Information Not Available";
+							bot=10;
+							}
+						}
+					if(bot==1 && tope==1)
+						{							
+							document.getElementById("bottomerror").style.visible='visible';
+							document.getElementById("demo").style.visible='hidden';
+							document.getElementById("bottom").style.visibility="hidden";														
+
+						}
+					else if(bot!=10)
+						{						
+						document.getElementById("bottom").style.visibility="visible";
+						document.getElementById("bottomerror").style.visible='hidden';					
+						document.getElementById("demo").style.visible='visible';					
+						if(tope==1)
+							{document.getElementById("fb").style.visibility="hidden";
+							document.getElementById("simage").style.visibility="hidden";
+							document.getElementById("cfigures").style.visibility="hidden";
+							document.getElementById("cname").style.visibility="hidden";
+							document.getElementById("idrule").style.visibility="hidden";
+							document.getElementById("error").style.visibility="visible";
+							document.getElementById("quote").innerHTML="Stock Information Not Available";
+							}
+						 //no error in top and bottom is good
+							
+							var i;
+							var newsh="<ul>";
+							for(i=0;i<stockinfo.result.News.Item.length;i++)
+								{
+									newsh+="<li><a href="+stockinfo.result.News.Item[i].Link+" target='_blank'>"+stockinfo.result.News.Item[i].Title+"</a></li>";	
+								}
+							newsh+="</ul>";
+							document.getElementById("news").innerHTML=newsh;
+							
+						}					
+				}		
+ 	} 	 	
+	</script>
+	</head>
+<body class="yui3-skin-sam">
+<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"></script>
+<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+
+        FB.init({
+          appId      : '360392360765369',
+          status     : true,
+          xfbml      : true,
+          cookie	 : true
+        });
+      };      
+    </script>
+	
+<form name="stock" method="post">
+	<div id="searchbox">		
+		<font color="white" size="5">Company:</font><input type="text" name="cname" id="ac-input" placeholder="enter company symbol" size="60">
+		<input type="button" name="button" value="Search" onclick="return connectServlet()">
+	</div>
+</form>
+	<div id="top">
+		<div id="cname">			
+		</div>		
+		<div id="cfigures">			
+		</div>		
+		<div id="simage">		
+		</div>	
+		<div id="fb">
+			<input type="image" src="facebook.jpg" width="80" onclick="return postFacebook()">
+		</div>				
+		<div id="error">
+			Stock Information Not Available
+		</div>
+		<div id="idrule">
+			<hr class='rule'/>		
+		</div>
+	</div>
+	<div id="bottomerror">News Information Not Available</div>
+	<div id="bottom">		
+		<div id="demo">
+		    <ul>
+		        <li><a href="#quote">Quote Information</a></li>
+		        <li><a href="#news">News Headlines</a></li>		        
+		    </ul>
+		    <div>
+		        <div id="quote">
+		            <p></p>
+		        </div>
+		        <div id="news">
+		            <p></p>
+		        </div>		        
+		    </div>		    
+		</div>		
+		<script type="text/javascript">
+			YUI().use('tabview', function(Y) {
+		    var tabview = new Y.TabView({srcNode:'#demo'});
+		    tabview.render();
+			});
+		</script>
+	</div>
+<NOSCRIPT>
+</body>
+</html>
+
