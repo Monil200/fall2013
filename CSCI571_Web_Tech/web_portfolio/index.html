@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html>
+<head><Title> Monil Parikh</title>
+	<link rel="shortcut icon" href="favicon.ico" >
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css" rel="stylesheet">    
+	<style>
+.all{
+	height:3550px;
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
+	border:1px solid #E5E5ED;
+	margin-top: 40px;
+	border-radius: 5px;
+	background-color: white;
+}
+.title{
+	height:200px;
+	background-color: #19A3FF;	
+	border-radius: 5px;
+}
+.navbar{	
+	height:40px;
+	width:100%;	
+	background-color:#BDEFFF;
+	padding-left: 30px;
+}
+.titleimg{
+	padding-top: 30px;
+	margin-left:475px;	
+}
+.tempnav{
+margin-top: 700px;
+background-color: red;
+height:100px;
+}
+.home{
+margin-left: 200px;
+margin-top: 15px;
+width:58%;
+}
+.project{	
+	margin-left: 200px;
+	width:58%;	
+}
+.prjdesc{
+	margin-top: 60px;
+}
+.gallery{
+	margin-top: 20px;
+	margin-right: 15px;
+	margin-left: 15px;	
+}
+.edu{
+	margin-top: 20px;
+}
+.tech{
+	margin-top: 20px;
+}
+.ex{
+	margin-top: 20px;	
+}
+.comp{
+	width:60%;
+	border:1px solid #E5E5ED;
+	height:100px;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+body{
+	background-color:#E0E0FF;
+}
+.scrollup {
+  width: 55px;
+  height: 50px;
+  opacity: 0.3;
+  position: fixed;
+  bottom: 40px;
+  right: 60px;
+  display: none;
+  text-indent: -9999px;
+  background: url('images/top.jpg') no-repeat;
+  border:1px solid #E5E5ED;
+}
+.scrollup:hover{
+	opacity: 1;
+}
+.footer{
+	position: relative;
+	background-color: #66A3FF;
+	width:100%;
+	height:40px;	
+	padding-left: 550px;	
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.js"></script>
+<script src="scrollease/jquery.scrollTo.min.js"></script>
+<script src="scrollease/jquery.localScroll.min.js"></script>
+<script src="scrollease/jquery.easing.1.3.min.js"></script>
+<script>    
+    $(document).ready(function(){
+	$("#homeLink").click(function(){
+		$.scrollTo('.all',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#galleryLink,#eduLink,#exLink,#techLink,#linkLink,#resumeLink").removeClass("active");
+		$("#homeLink").addClass("active");
+	});	
+	$("#projectLink").click(function(){
+		$.scrollTo('.project',1000,{ easing:'easeOutQuint' });
+		$("#homeLink,#galleryLink,#eduLink,#exLink,#techLink,#linkLink,#resumeLink").removeClass("active");
+		$("#projectLink").addClass("active");
+	});	
+	$("#galleryLink").click(function(){
+		$.scrollTo('.gallery',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#homeLink,#eduLink,#exLink,#techLink,#linkLink,#resumeLink").removeClass("active");
+		$("#galleryLink").addClass("active");
+	});	
+	$("#eduLink").click(function(){
+		$.scrollTo('.edu',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#galleryLink,#homeLink,#exLink,#techLink,#linkLink,#resumeLink").removeClass("active");
+		$("#eduLink").addClass("active");
+	});	
+	$("#exLink").click(function(){
+		$.scrollTo('.ex',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#galleryLink,#eduLink,#homeLink,#techLink,#linkLink,#resumeLink").removeClass("active");
+		$("#exLink").addClass("active");
+	});	
+	$("#techLink").click(function(){
+		$.scrollTo('.tech',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#galleryLink,#eduLink,#exLink,#homeLink,#linkLink,#resumeLink").removeClass("active");
+		$("#techLink").addClass("active");
+	});	
+	$("#linkLink").click(function(){
+		$.scrollTo('.all',1000,{ easing:'easeOutQuint' });
+		$("#projectLink,#galleryLink,#eduLink,#exLink,#homeLink,#techLink,#resumeLink").removeClass("active");
+		$("#linkLink").addClass("active");
+	});	
+	$("#resumeLink").click(function(){		
+		$("#projectLink,#galleryLink,#eduLink,#exLink,#homeLink,#techLink,#linkLink").removeClass("active");
+		$("#resumeLink").addClass("active");
+		var win = window.open('http://www-scf.usc.edu/~monilasp/resume/MonilParikh_Resume_1_1_14.pdf', '_blank');
+        win.focus();
+	});	
+	$(window).scroll(function () {
+          if ($(this).scrollTop() > 100) {
+              $('.scrollup').fadeIn();
+          } else {
+              $('.scrollup').fadeOut();
+          }
+      });
+
+      $('.scrollup').click(function () {
+          $("html, body").animate({
+              scrollTop: 0
+          }, 600);
+          return false;
+      });
+
+});
+
+</script>
+</head>
+<body>
+	    <div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&appId=1443609765885593&version=v2.0";
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+
+
+<div class="all">	
+	<div class="title">
+		<div class="titleimg">
+			<img src="images/me.JPG" class="img-circle" height="120" width="120" style="border:2px solid white">			
+		</div>		
+		<img src="images/email.jpg" style="margin-left:375px;color:white;"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color:white"><span class="glyphicon glyphicon-phone"></span>+1 562-999-6314</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div class="fb-like" data-href="http://www-scf.usc.edu/~monilasp/" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div>
+	</div>	
+	<div class="navbar">
+		<ul class="nav nav-pills">
+		  <li class="active" id="homeLink"><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+		  <li id="projectLink"><a href="#">PROJECTS</a></li>
+		  <li id="galleryLink"><a href="#"><span class="glyphicon glyphicon-th"></span> PROJECT GALLERY</a></li>
+		  <li id="eduLink"><a href="#">EDUCATION</a></li>
+		  <li id="exLink"><a href="#"><span class="glyphicon glyphicon-briefcase"></span> WORK EX</a></li>
+		  <li id="techLink"><a href="#"><span class="glyphicon glyphicon-pencil"></span> TECHNICAL PROFICIENCY</a></li>		  
+		  <li id="resumeLink"><a href="#"><span class="glyphicon glyphicon-folder-open"></span> RESUME</a></li>
+		  <li class="dropdown" id="linkLink">
+		    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+		      <span class="glyphicon glyphicon-link"></span> LINKS <span class="caret"></span>
+		    </a>
+		    <ul class="dropdown-menu">
+		      <li role="presentation"><a href="http://www.facebook.com/monil.parikh.5" target="_blank">FACEBOOK</a></li>
+		      <li role="presentation"><a tabindex="-1" href="http://www.linkedin.com/pub/monil-parikh/83/a79/7ab/" target="_blank">LINKEDIN</a></li>
+		      <li role="presentation"><a tabindex="-1" href="https://twitter.com/monil_parikh" target="_blank">TWITTER</a></li>
+		      <li role="presentation"><a tabindex="-1" href="https://monilasp.wordpress.com" target="_blank">WORDPRESS BLOG</a></li>
+		      <li role="presentation"><a tabindex="-1" href="https://github.com/Monil200/fall2013" target="_blank">GITHUB</a></li>
+		      <li class="divider"></li>
+		      <li role="presentation" class="dropdown-header">Project Links</li>
+		      <li role="presentation"><a tabindex="-1" href="http://cs-server.usc.edu:12211/stocks/stocks_8.html" target="_blank">Yahoo! Live Stocks</a></li>
+		      <li role="presentation"><a tabindex="-1" href="http://www-scf.usc.edu/~monilasp/sphere/sphere_wiki_bootstrap.html" target="_blank">Wikipedia Article Search</a></li>
+		      <li class="divider"></li>
+		      <li role="presentation" class="dropdown-header">YouTube Links</li>
+		      <li role="presentation"><a tabindex="-1" href="https://www.youtube.com/watch?v=BwBmdYHWa_U" target="_blank">Project Demo-JobQuest</a></li>
+		      <li role="presentation"><a tabindex="-1" href="https://www.youtube.com/watch?v=Vxynia5sJjY&feature=youtu.be" target="_blank">Yahoo! Stock Android Demo</a></li>
+		    </ul>
+		  </li>
+		</ul>  
+	</div>
+	<div class="home" id="homeDetails">
+		<div>
+			<img src="images/usc.jpg" class="pull-left img-circle" height="100" width="100"><br><br><pre style="margin-top:-10px">Computer Science Graduate student at University of Southern California.</pre>			
+		</div>
+		<div style="margin-top:45px">
+			<img src="images/yahoo.jpg" class="pull-left img-circle" height="100" width="100"><br><br><pre style="margin-top:-10px">Current Software Developer Intern at Yahoo!, Sunnyvale,CA.</pre>
+		</div>
+		<br><br>
+		<blockquote>
+		  <p>Current GPA : 3.62</p>
+		  <footer>Subject to Change<cite title="Source Title"> (GPA) </cite></footer>
+		</blockquote>		
+		<div class="panel-group" id="accordion">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+		          Spring 2014 Courses <span class="caret"></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseOne" class="panel-collapse collapse in">
+		      <div class="panel-body">
+		        <ul>
+		        	<li>Web Technologies</li>
+		        	<li>Analysis of Algorithms</li>
+		        	<li>Information Integration on Web</li>
+		        </ul>
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+		          Fall 2013 Courses <span class="caret"></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse">
+		      <div class="panel-body">
+		        <ul>
+		        	<li>Database Systems</li>
+		        	<li>Software Engineering</li>
+		        	<li>Artificial Intelligence</li>
+		        </ul>
+		      </div>
+		    </div>
+		  </div>		  
+		</div>
+	</div>	
+	<div class="project">
+		<h2><span class="label label-primary" style="margin-left:-183px;">Projects</span></h2>
+		<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+		  <ol class="carousel-indicators">
+		    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="5"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="6"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="7"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="8"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="9"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="10"></li>
+		    <li data-target="#carousel-example-generic" data-slide-to="11"></li>		
+		  </ol>
+
+		  <!-- Wrapper for slides -->
+		  <div class="carousel-inner">
+		    <div class="item active">
+		      <img src="images/image-slider-01.jpg" style="height:300px;width:800px;">		      
+		    </div> 
+		    <div class="item">
+		      <img src="images/image-slider-02.jpg" style="height:300px;width:800px;">		      
+		    </div>  
+		     <div class="item" >
+		      <img src="images/image-slider-03.jpg" style="height:300px;width:800px;">		      
+		    </div>  	
+		    <div class="item">
+		      <img src="images/image-slider-04.jpg" style="height:300px;width:800px;">		      
+		    </div>  	 
+		    <div class="item">
+		      <img src="images/image-slider-05.jpg" style="height:300px;width:800px;">		      
+		    </div>  
+		    <div class="item">
+		      <img src="images/image-slider-06.jpg" style="height:300px;width:800px;">		     
+		    </div>  
+		    <div class="item">
+		      <img src="images/image-slider-07.jpg" style="height:300px;width:800px;">		      
+		    </div>  		
+		    <div class="item">
+		      <img src="images/image-slider-08.jpg" style="height:300px;width:800px;">		      
+		    </div>  
+		    <div class="item">
+		      <img src="images/image-slider-09.jpg" style="height:300px;width:800px;" >		      
+		    </div>  
+		    <div class="item">
+		      <img src="images/image-slider-10.jpg" style="height:300px;width:800px;" >		      
+		    </div> 
+		     <div class="item">
+		      <img src="images/image-slider-11.jpg" style="height:300px;width:800px;">
+		    </div>		      
+		     <div class="item">
+		      <img src="images/image-slider-12.jpg" style="height:300px;width:800px;" >		      
+		    </div>      
+		  </div>
+		  <!-- Controls -->
+		  <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+		    <span class="glyphicon glyphicon-chevron-left"></span>
+		  </a>
+		  <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+		    <span class="glyphicon glyphicon-chevron-right"></span>
+		  </a>
+		</div>
+	</div>
+	<div class="prjdesc">
+		<div class="panel-group" id="accordionP">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordionP" href="#collapseOneP">
+		          Project 1--Yahoo! Stock Search--(Slides 1-3) <span class="caret"></span>	
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseOneP" class="panel-collapse collapse in">
+		      <div class="panel-body">
+		        The Yahoo! Stock Search application fetches real time stock quotes, stock chart and news headlines of any company using Yahoo's APIs. It uses YUI, Amazon's AWS
+			     ,JDOM for XML parsing and Facebook share capability to share the company quotes on users wall. The PHP script hosted on AWS returns XML which is parsed by Servlets 
+			     and servlets returns JSON to the front end call made by Javascript.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordionP" href="#collapseTwoP">
+		          Project 2--JobQuest - A Mashup--(Slides 4-5)<span class="caret"></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwoP" class="panel-collapse collapse">
+		      <div class="panel-body">
+		        JobQuest is a job aggregator portal which integrates jobs from portals like Glassdoor, Monster and Jobdiagnosis. These protal are crawled on regular basis to update the job data store which is in the form of JSON files. The resulting mashup (gathering data from more than one sources to create a new application) is more detailed than any of the current job portal in the world.
+		      </div>
+		    </div>
+		  </div>	
+		   <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordionP" href="#collapseThree">
+		          Project 3--Hybrid AES/DES Encryption/Decryption Algorithm--(Slides 6-10)<span class="caret"></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseThree" class="panel-collapse collapse">
+		      <div class="panel-body">
+		       The hybrid AES/DES is anovel approach to information ecnrption which can be in form of strings, images,videos and audios. The key strength achieved using this approach is more than the two algorithm's  actual strength. To add to the key strength a novel theory of irrational numbers is used which makes the algorithm uncrackable.
+		      </div>
+		    </div>
+		  </div>	
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordionP" href="#collapseFour">
+		          Project 4--Extreme Downloader and Manager--(Slides 4-5)<span class="caret"></span>
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseFour" class="panel-collapse collapse">
+		      <div class="panel-body">
+		       The Downlaod manager is a tool that accelerates the download by downloading multiple segements of the file together. It send requests for differents parts of the same file to downlaod different parts simultaneoulsy. It has options to pause, stop, resume and schedule downlaod at a later time. The downlaod window shows the status of the current download along with the status of the individual segments.
+		      </div>
+		    </div>
+		  </div>	  
+		</div>		
+	</div>
+	<div class="gallery" id="galleryDetails">		
+		<h2><span class="label label-primary">Project Gallery</span></h2>
+		<img src="images/image-slider-01.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-02.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-03.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-04.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">
+
+		<img src="images/image-slider-05.jpg" class="img-thumbnail"  style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-06.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-07.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-08.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">
+
+		<img src="images/image-slider-09.jpg" class="img-thumbnail"  style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-10.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-11.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/image-slider-12.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">		
+	</div>
+	<div class="edu">
+		<h2><span class="label label-primary">Education</span></h2>
+		<div style="width:80%;margin-left: auto;margin-right:auto;">
+			<table width="80%" class="table table-hover">			
+				<br>
+				<tr><th>University</th><th>Major</th><th>Graduation Year</th></tr>
+				<tr>
+					<td>University of Southern California (USC)</td>      
+					<td> Computer Science</td> 
+					<td>2013 (fall) - Present</td>
+				</tr>
+				<tr>
+					<td>Thakur College of Engineering &amp; Technology (TCET)</td>      
+					<td>BE in Information technology (AGG: 79.37%)</td> 
+					<td>Graduated 2012</td>
+				</tr>
+				<tr>
+					<td>Shri Bhaghubhai Mafatlal Polytechnic (SBMP)</td>      
+					<td>Diploma Information technology (AGG: 81.51%)</td> 
+					<td>Graduated 2009</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	<div class="tech">
+		<h2><span class="label label-primary">Programming Stack</span></h2>		
+		<div style="width:80%;	margin-left: auto;margin-right: auto;">
+			<br>
+			<table width="80%" class="table table-hover">				
+				<tr>
+					<td>Programming Languages</td>
+					<td>C, C++, Java, Visual Basic, SQL/PLSQL and Python</td>
+				</tr>
+				<tr>
+					<td>Web</td>
+					<td>JavaScript, VB Script, HTML(5), Servlets, JSP, CSS(3), jQuery, PHP, XML (XSLTand XML DOM), AJAX, JSON and Bootstrap.</td>
+				</tr>
+				<tr>
+					<td>Applications</td>
+					<td>MATLAB, Oracle Forms and Reports</td>
+				</tr>			 		
+				<tr>
+					<td>Hadoop</td>
+					<td> (HBase,Hive,Pig,Zookeeper,HDFS), Java MR(MapReduce)</td>
+				</tr>	
+				<tr>
+					<td>Cloud</td>
+					<td>Amazon Web Service(AWS), EMR,EC2,S3</td>
+				</tr>			 	
+				<tr>
+					<td>Others</td>
+					<td>UNIX Shell Scripting</td>
+				</tr>			 	
+			</table>			
+		</div>
+
+		<div class="gallery" id="galleryDetails">		
+			<h2><span class="label label-primary">Technology Gallery</span></h2>
+			<img src="images/1.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/2.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/3.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/4.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">
+
+			<img src="images/5.jpg" class="img-thumbnail"  style="margin:8px;height:140px;width:245px;"><img src="images/6.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/7.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/8.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">
+
+			<img src="images/9.jpg" class="img-thumbnail"  style="margin:8px;height:140px;width:245px;"><img src="images/10.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/11.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;"><img src="images/12.jpg" class="img-thumbnail" style="margin:8px;height:140px;width:245px;">		
+	`</div>
+
+
+	</div>
+	<div class="ex">
+		<h2><span class="label label-primary">Work Experience</span></h2><br>	
+		<div class="comp">
+			<img src="images/yahoo.jpg" class="pull-left img-circle" height="80" width="80" style="margin-top:6px" ><br><pre>Current Software Developer Intern at Yahoo!, Sunnyvale,CA.<br>Team: Search</pre>
+		</div><br>
+		<div class="comp">
+			<img src="images/accenture.jpg" class="pull-left img-circle" height="80" width="80" style="margin-top:6px;border:1px solid black"><pre style="margin-top:11px">Worked on Project Barclays undertaken by Accenture. Was part of the Enhancement team   that working on Barclays Intranet. Developed scripting code, user  friendly GUI and various enhancem-ent features</pre>
+		</div>	<br>
+		<div class="comp">
+			<img src="images/barclays.jpg" class="pull-left img-circle" height="80" width="80" style="margin-top:6px;border:1px solid black" ><br><pre>Won Employee of the Month Mar 2013 for developing automated scripts saving   one hour of human effort on daily basis.</pre>
+		</div>	
+	</div>
+	</div>
+	<span style="margin-left:1090px">Page Hits
+	<script type="text/javascript">
+	var sc_project=9851156; 
+	var sc_invisible=0; 
+	var sc_security="f80997aa"; 
+	var scJsHost = (("https:" == document.location.protocol) ?
+	"https://secure." : "http://www.");
+	document.write("<sc"+"ript type='text/javascript' src='" +
+	scJsHost+
+	"statcounter.com/counter/counter.js'></"+"script>");
+	</script>
+
+	<noscript><div class="statcounter">Page Hits<a title="hits counter"
+	href="http://statcounter.com/free-hit-counter/"
+	target="_blank"><img class="statcounter"
+	src="http://c.statcounter.com/9851156/0/f80997aa/0/"
+	alt="hits counter"></a></div></noscript></span>
+	<div class="footer">
+		<h3>Powered By <img src="images/bootstrap.jpg" class="img-circle" height="40" width="50"></h3>
+	</div>
+	<a href="#" class="scrollup">Scroll</a>
+
+	<!-- Start of StatCounter Code for Default Guide -->
+	
+	
+	<!-- End of StatCounter Code for Default Guide -->
+
+
+
+<NOSCRIPT>
+</body>
+</html>

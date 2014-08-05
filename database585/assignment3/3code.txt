@@ -1,0 +1,75 @@
+
+        
+import java.io.IOException;
+import java.util.*;
+
+import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.conf.*;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.*;
+import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
+import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
+        
+public class code3 {
+        
+ public static class Map extends Mapper<LongWritable, Text, Text, IntWritable> {
+    private final static IntWritable one = new IntWritable(1);
+        
+    public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+        String line = value.toString();
+		String[] line_split=line.split(",");
+		String ranges[]={"5-14","15-24","25-34","35-44","45-54","55+"};
+		int user_age=0;
+		user_age=Integer.parseInt(line_split[1]);
+		if (user_age>=5 && user_age<=14)
+			context.write(new Text(ranges[0]), one);
+		else if (user_age>=15 && user_age<=24)
+			context.write(new Text(ranges[1]), one);
+		else if (user_age>=25 && user_age<=34)
+			context.write(new Text(ranges[2]), one);
+		else if (user_age>=35 && user_age<=44)
+			context.write(new Text(ranges[3]), one);
+		else if (user_age>=45 && user_age<=54)
+			context.write(new Text(ranges[4]), one);
+		else if (user_age>=55)
+			context.write(new Text(ranges[5]), one);
+			
+    }
+ } 
+        
+ public static class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {
+
+    public void reduce(Text key, Iterable<IntWritable> values, Context context) 
+      throws IOException, InterruptedException {
+        int sum = 0;
+        for (IntWritable val : values) {
+            sum += val.get();
+        }
+        context.write(key, new IntWritable(sum));
+    }
+ }
+        
+ public static void main(String[] args) throws Exception {
+    Configuration conf = new Configuration();
+        
+        Job job = new Job(conf, "q1");
+        job.setJarByClass(code3.class);
+    
+    job.setOutputKeyClass(Text.class);
+    job.setOutputValueClass(IntWritable.class);
+        
+    job.setMapperClass(Map.class);
+    job.setReducerClass(Reduce.class);
+        
+    job.setInputFormatClass(TextInputFormat.class);
+    job.setOutputFormatClass(TextOutputFormat.class);
+        
+    FileInputFormat.addInputPath(job, new Path(args[0]));
+    FileOutputFormat.setOutputPath(job, new Path(args[1]));
+        
+    job.waitForCompletion(true);
+ }
+        
+}

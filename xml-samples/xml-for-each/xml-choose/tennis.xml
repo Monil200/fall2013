@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml-stylesheet type="text/xsl" href="foreach_choose.xsl"?>
+<tennis>
+	<player>
+		<name>Roger Federer</name>
+		<rank>1</rank>
+		<titles>77</titles>
+		<dob>
+			<d>8</d>
+			<m>8</m>
+			<y>1981</y>
+		</dob>
+		<gs>17</gs>
+	</player>
+	<player>	
+		<name>Novak Djokovic</name>
+		<rank>2</rank>
+		<titles>40</titles>
+		<dob>
+			<d>2</d>
+			<m>6</m>
+			<y>1986</y>
+		</dob>
+		<gs>6</gs>
+	</player>
+	<player>
+		<name>Rafael Nadal</name>
+		<rank>3</rank>
+		<titles>59</titles>
+		<dob>
+			<d>3</d>
+			<m>6</m>
+			<y>1986</y>
+		</dob>
+		<gs>13</gs>
+	</player>
+	<player>
+		<name>Andy Murray</name>
+		<rank>4</rank>
+		<titles>35</titles>
+		<dob>
+			<d>1</d>
+			<m>1</m>
+			<y>1986</y>
+		</dob>
+		<gs>2</gs>
+	</player>
+</tennis>

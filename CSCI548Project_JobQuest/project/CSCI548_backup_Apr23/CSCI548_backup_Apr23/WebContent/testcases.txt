@@ -1,0 +1,16 @@
+A.FULLTIME
+1.software engr >7
+2.sales >7
+3.quality engineer >7 
+  quality assurance =2
+4.java =2
+5.application engineer >7
+6.manager >7
+
+B.INTERNSHIP
+
+C.PART-TIME
+
+D.STATE-WISE
+1.California =2
+2.New York =1

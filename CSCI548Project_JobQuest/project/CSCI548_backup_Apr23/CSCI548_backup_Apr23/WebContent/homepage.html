@@ -1,0 +1,697 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="PRAGMA" content="NO-CACHE"> 
+<title>Job Quest</title>
+<style type=text/css>
+.column {
+	position: relative;
+	float:left;
+}
+.link_class {
+	color:#0088CC;
+	font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+#jobsarea .row {
+	position: relative;
+	float: top;
+	visibility:hidden;
+	padding:10px;
+}
+#jobsarea.ja_class {
+	visibility:hidden;
+	position:absolute;top:15%;
+	border-style:solid;border-width:1px;border-color:#c7c7c7;
+	background-color:white;
+	margin-left:12%;margin-right:15%;
+	width:73%;
+}
+.jd_class {
+	 color:#F36011;
+	 font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.cn_class {
+	font: normal 16px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.cstock_class {
+	color:#666A6D;
+	font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.jt_class {
+	color:#7CB228;
+	font: normal 19px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;
+	overflow:hidden;text-overflow:ellipsis;
+	width:12%;
+}
+.chq_class {
+	color:#666A6D;font: normal 16px arial,sans-serif;
+}
+div.horizontalRule {
+    min-height: 1px;
+    clear:both; width:100%;
+    border-bottom:1px solid #d1d1d1;
+    height:1px; padding-top:5px;
+    margin-top:5px;
+    margin-bottom:5px;
+}
+span.crating {
+	position:relative;
+	left:0%;
+	top:30%;
+	color:#818181;
+	font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;
+}
+.layout-pagination {
+	visibility:hidden;
+	position:relative;
+	top:10%;
+	left:42%;
+	width:20%;
+}
+ul{border:0; margin:0; padding:0;}
+#pagination-digg li{
+border:0; margin:0; padding:0;
+font-size:16px;
+list-style:none;
+margin-right:2px;
+}
+#pagination-digg a{
+border:solid 1px #9aafe5
+margin-right:2px;
+}
+#pagination-digg .previous-off,
+#pagination-digg .next-off {
+border:solid 1px #DEDEDE
+color:#888888
+display:block;
+float:left;
+font-weight:bold;
+margin-right:2px;
+padding:3px 4px;
+}
+#pagination-digg .next a,
+#pagination-digg .previous a {
+font-weight:bold;
+} 
+#pagination-digg .active{
+background:#2e6ab1;
+color:#FFFFFF;
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-digg a:link,
+#pagination-digg a:visited {
+color:#0e509e
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-digg a:hover{
+border:solid 1px #0e509e
+}
+</style>
+<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>-->
+<script src="http://yui.yahooapis.com/3.14.1/build/yui/yui-min.js"></script>
+<script>
+YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function (Y) {
+  var states = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Dakota',
+    'North Carolina',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
+  ];
+
+  Y.one('#ac-input').plug(Y.Plugin.AutoComplete, {
+    resultFilters    : 'phraseMatch',
+    resultHighlighter: 'phraseMatch',
+    source           : states
+  });
+});
+</script>
+<script type="text/JavaScript">
+	pageNum = 1;
+	var fulltimeClicked = false;
+	var internshipClicked = false;
+	var partimeClicked = false;
+	function mouseOver(x){
+		document.getElementById(x).style.backgroundColor = "#000";
+	};
+	function mouseOut(x){
+		if(x == 'fulltime' && !fulltimeClicked){
+			document.getElementById(x).style.backgroundColor = "#3B5998";
+		}
+		else if(x == 'internship' && !internshipClicked){
+			document.getElementById(x).style.backgroundColor = "#3B5998";
+		}
+		else if(x == 'partime' && !partimeClicked){
+			document.getElementById(x).style.backgroundColor = "#3B5998";
+		}
+	};
+	function toggleSelection(x){
+		if(x == 'fulltime'){
+			if(fulltimeClicked) { document.getElementById(x).style.backgroundColor = "#3B5998"; fulltimeClicked=false;}
+			else { 
+				fulltimeClicked=true;
+				internshipClicked=false;
+				partimeClicked=false;
+				document.getElementById('internship').style.backgroundColor = "#3B5998";
+				document.getElementById('partime').style.backgroundColor = "#3B5998";
+				document.getElementById(x).style.backgroundColor = "#000";
+			}
+		}
+		else if(x == 'internship'){
+			if(internshipClicked) { document.getElementById(x).style.backgroundColor = "#3B5998"; internshipClicked=false;}
+			else { 
+				fulltimeClicked=false;
+				internshipClicked=true;
+				partimeClicked=false;
+				document.getElementById('fulltime').style.backgroundColor = "#3B5998";
+				document.getElementById('partime').style.backgroundColor = "#3B5998";
+				document.getElementById(x).style.backgroundColor = "#000";
+			}
+		}
+		else if(x == 'partime'){
+			if(partimeClicked) { document.getElementById(x).style.backgroundColor = "#3B5998"; partimeClicked=false;}
+			else { 
+				fulltimeClicked=false;
+				internshipClicked=false;
+				partimeClicked=true;
+				document.getElementById('fulltime').style.backgroundColor = "#3B5998";
+				document.getElementById('internship').style.backgroundColor = "#3B5998";
+				document.getElementById(x).style.backgroundColor = "#000";
+			}
+		}
+	}
+	function fetchResultsPaginate(direction){
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState==4){
+				if(xmlhttp.status==200){
+					try {
+						//var json=JSON.parse(xmlhttp.responseText);
+						var json = eval('(' + xmlhttp.responseText + ')');
+						var collection_array = json.results.collection;
+						for(var i in collection_array){
+							var job = collection_array[i];
+							var job_title = job.job_title;
+							var job_title_text = job_title.text;
+							if(job_title_text.length>32)
+								job_title_text = job_title_text.substring(0,32)+"...";
+							document.getElementById("job_title"+i).innerHTML=job_title_text;
+							document.getElementById("job_title"+i).href=job_title.href;
+							document.getElementById("job_date"+i).innerHTML=job.job_date;
+							var cname = job.cname;
+							document.getElementById("cname"+i).innerHTML=cname.text;
+							document.getElementById("cname"+i).href=cname.href;
+							document.getElementById("curl"+i).href="http://"+job.curl;
+							document.getElementById("chq"+i).innerHTML=job.chq!=""?" - "+job.chq:"";
+							if(job.cstock=="" || job.cstock==null)
+								job.cstock = "U/K";
+							document.getElementById("cstock"+i).innerHTML=job.cstock;
+							document.getElementById("crating"+i).innerHTML=job.crating;
+							document.getElementById("csatisfaction"+i).innerHTML=job.csatisfaction;
+							document.getElementById("ceo_name"+i).innerHTML=job.ceo_name;
+							if(job.source=="glassdoor")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/glassdoor-logo.png";
+							else if(job.source=="jobdiagnosis")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/jobdiagnosis-logo.jpeg";
+							else if(job.source=="monster")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/monster-logo.png";
+							document.getElementById("ceo_rating"+i).innerHTML=job.ceo_rating+" Approve";
+							var csalary = job.csalary;
+							document.getElementById("csalary"+i).href=csalary.href;
+							var creviews = job.creviews;
+							document.getElementById("creviews"+i).href=creviews.href;
+							var cinterviews = job.cinterviews;
+							document.getElementById("cinterviews"+i).href=cinterviews.href;
+							
+						}
+						if(i<9){
+							for(var j=i+1;j<10;j++){
+								var jobobject = document.getElementById('jobobject'+j);
+								jobobject.style.visibility = 'invisible';
+							}
+						}
+						document.getElementById("page_num").innerHTML=pageNum;
+					}
+					catch(error){
+						--pageNum;
+					}
+				}
+			}
+		}
+		if(direction=='next')
+			++pageNum;
+		else
+			if(pageNum>1){
+				--pageNum;
+			}
+		var nextpageurl = "http://localhost:8080/csci548/PaginationHelper?page="+pageNum;
+		//alert(nextpageurl);
+		xmlhttp.open("GET",nextpageurl,true);
+		xmlhttp.send();
+	}
+	function fetchResults(url,postdata){
+		pageNum = 1;
+		document.getElementById("page_num").innerHTML=pageNum;
+		if(!fulltimeClicked && !internshipClicked && !partimeClicked)
+			alert("Please select a search criteria!");
+		var searchString;
+		if(document.getElementById("later").style.visibility == 'visible')
+			searchString = document.getElementById('searchbox2').value;
+		else
+			searchString = document.getElementById('searchbox').value;
+		var searchPlace = document.getElementById('ac-input').value;
+		document.getElementById("initial").style.visibility = 'hidden';
+		document.getElementById("later").style.visibility = 'visible';
+		document.getElementById("jobsarea").style.visibility = 'visible';
+		document.getElementById("pagination-digg").style.visibility = 'visible';
+		document.body.style.background = "#f7f7f7";
+		document.getElementById('searchbox2').value = searchString;
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.onreadystatechange=function(){
+			if(xmlhttp.readyState==4){
+				if(xmlhttp.status==200){
+					try {
+						//var json=JSON.parse(xmlhttp.responseText);
+						var json = eval('(' + xmlhttp.responseText + ')');
+						var collection_array = json.results.collection;
+						for(var i in collection_array){
+							var jobobject = document.getElementById('jobobject'+i);
+							jobobject.style.visibility = 'visible';
+							
+							var job = collection_array[i];
+							var job_title = job.job_title;
+							var job_title_text = job_title.text;
+							if(job_title_text.length>32)
+								job_title_text = job_title_text.substring(0,32)+"...";
+							document.getElementById("job_title"+i).innerHTML=job_title_text;
+							document.getElementById("job_title"+i).href=job_title.href;
+							document.getElementById("job_date"+i).innerHTML=job.job_date;
+							var cname = job.cname;
+							document.getElementById("cname"+i).innerHTML=cname.text;
+							document.getElementById("cname"+i).href=cname.href;
+							document.getElementById("curl"+i).href="http://"+job.curl;
+							document.getElementById("chq"+i).innerHTML=job.chq!=""?" - "+job.chq:"";
+							if(job.cstock=="" || job.cstock==null)
+								job.cstock = "U/K";
+							document.getElementById("cstock"+i).innerHTML=job.cstock;
+							document.getElementById("crating"+i).innerHTML=job.crating;
+							document.getElementById("csatisfaction"+i).innerHTML=job.csatisfaction;
+							document.getElementById("ceo_name"+i).innerHTML=job.ceo_name;
+							if(job.source=="glassdoor")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/glassdoor-logo.png";
+							else if(job.source=="jobdiagnosis")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/jobdiagnosis-logo.jpeg";
+							else if(job.source=="monster")
+								document.getElementById("logo"+i).src="http://localhost:8080/csci548/monster-logo.png";
+							document.getElementById("ceo_rating"+i).innerHTML=job.ceo_rating+" Approve";
+							var csalary = job.csalary;
+							document.getElementById("csalary"+i).href=csalary.href;
+							var creviews = job.creviews;
+							document.getElementById("creviews"+i).href=creviews.href;
+							var cinterviews = job.cinterviews;
+							document.getElementById("cinterviews"+i).href=cinterviews.href;
+							
+						}
+						document.getElementById("page_num").innerHTML=pageNum;
+					}
+					catch(error){
+						//alert("error occurred");
+					}
+				}
+			}
+		}
+		xmlhttp.open("POST",url,true);
+		var type = fulltimeClicked?"fulltime":(internshipClicked?"internship":(partimeClicked?"parttime":""));
+		if(type=='fulltime')
+			document.getElementById("fulltime2").style.backgroundColor = "#000";
+		else if(type=='internship')
+			document.getElementById("internship2").style.backgroundColor = "#000";
+		else if(type=='parttime')
+			document.getElementById("partime2").style.backgroundColor = "#000";
+		if(postdata==""){
+			postdata = "searchString="+searchString+"&type="+type+"&searchPlace="+searchPlace;
+		}
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("Content-length", postdata.length);
+		xmlhttp.send(postdata);
+	}
+</script>
+</head>
+<body>
+	<div id="initial" style="position:absolute;top:30%;left:25%">
+		<span style="position:relative;left:27%;font-size:60px;"><font color="#3B5998">JobQuest</font></span><BR>
+		<input type="text" id="searchbox" size="82" style="height:30px;margin-top:20px" placeholder="Enter the job title"/>
+		<input type="submit" id="search" size="10" onclick="fetchResults('http://localhost:8080/csci548/ReadJson','')" style="height:32px;width:61px;margin-left:-5px;background-image:url(search_icon_new.png);background-repeat:no-repeat; text-indent:-9999px;border:none"/><BR/>		
+		<div id="location" class="yui3-skin-sam">
+			<input id="ac-input" type="text" size="25" style="height:30px;margin-top:20px" placeholder="Enter the name of US State">
+			<input type="button" id="fulltime" value="Full Time" size="10" onclick="toggleSelection('fulltime')" onMouseOver="mouseOver('fulltime');" onMouseOut="mouseOut('fulltime');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/>
+			<input type="button" id="internship" value="Internship" size="10" onclick="toggleSelection('internship')" onMouseOver="mouseOver('internship');" onMouseOut="mouseOut('internship');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/>
+			<input type="button" id="partime" value="Part Time" size="10" onclick="toggleSelection('partime')" onMouseOver="mouseOver('partime');" onMouseOut="mouseOut('partime');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/><BR/>
+		</div>
+	</div>
+	<div id="later" style="position:absolute;top:0px;left:0px;background-color:#EBEBEB;width:100%;height:9%;visibility:hidden;border-bottom-style:solid;border-width:1px;border-bottom-color:#d1d1d1;">
+		<span style="position:relative;top:3px;left:1%;font-size:30px"><font color="#3B5998">JobQuest</font></span>
+		<input type="text" id="searchbox2" size="90" style="position:relative;top:1px;left:10px;height:30px;margin-left:10px;" />
+		<input type="submit" id="search2" size="10" onclick="fetchResults('http://localhost:8080/csci548/ReadJson','')" style="position:relative;top:1px;left:0%;height:32px;width:61px;margin-left:5px;background-image:url('search_icon_new.png');background-repeat:no-repeat; text-indent:-9999px;border:none"/>
+		<input type="button" id="fulltime2" value="Full Time" size="10" onclick="toggleSelection('fulltime')" onMouseOver="mouseOver('fulltime');" onMouseOut="mouseOut('fulltime');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/>
+		<input type="button" id="internship2" value="Internship" size="10" onclick="toggleSelection('internship')" onMouseOver="mouseOver('internship');" onMouseOut="mouseOut('internship');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/>
+		<input type="button" id="partime2" value="Part Time" size="10" onclick="toggleSelection('partime')" onMouseOver="mouseOver('partime');" onMouseOut="mouseOut('partime');" style="height:30px;width:100px;margin-top:15px;margin-left:8px;background-color:#3B5998;color:#FFF;font: bold 12px 'Freight Sans Bold','lucida grande',tahoma,verdana,arial,sans-serif;border:none;border-radius:2px"/>
+		<BR/><BR/>
+	</div>
+	<div id="jobsarea" class="ja_class">
+		<div id="jobobject0" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title0" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname0" href="">Company Name</a></span>
+				<span id="chq0" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock0" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl0" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary0" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews0" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews0" href="">Interviews</a></span><br/><br/>
+				<span id="job_date0" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating0" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction0" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name0" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating0" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo0" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject1" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title1" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname1" href="">Company Name</a></span>
+				<span id="chq1" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock1" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl1" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary1" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews1" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews1" href="">Interviews</a></span><br/><br/>
+				<span id="job_date1" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column" style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating1" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction1" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name1" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating1" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo1" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject2" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title2" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname2" href="">Company Name</a></span>
+				<span id="chq2" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock2" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl2" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary2" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews2" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews2" href="">Interviews</a></span><br/><br/>
+				<span id="job_date2" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating2" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction2" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name2" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating2" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo2" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject3" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title3" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname3" href="">Company Name</a></span>
+				<span id="chq3" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock3" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl3" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary3" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews3" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews3" href="">Interviews</a></span><br/><br/>
+				<span id="job_date3" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating3" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction3" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name3" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating3" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo3" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject4" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title4" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname4" href="">Company Name</a></span>
+				<span id="chq4" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock4" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl4" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary4" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews4" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews4" href="">Interviews</a></span><br/><br/>
+				<span id="job_date4" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating4" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction4" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name4" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating4" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo4" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject5" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title5" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname5" href="">Company Name</a></span>
+				<span id="chq5" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock5" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl5" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary5" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews5" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews5" href="">Interviews</a></span><br/><br/>
+				<span id="job_date5" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating5" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction5" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name5" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating5" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo5" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject6" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title6" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname6" href="">Company Name</a></span>
+				<span id="chq6" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock6" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl6" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary6" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews6" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews6" href="">Interviews</a></span><br/><br/>
+				<span id="job_date6" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating6" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction6" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name6" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating6" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo6" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject7" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title7" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname7" href="">Company Name</a></span>
+				<span id="chq7" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock7" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl7" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary7" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews7" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews7" href="">Interviews</a></span><br/><br/>
+				<span id="job_date7" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating7" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction7" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name7" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating7" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo7" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject8" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title8" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname8" href="">Company Name</a></span>
+				<span id="chq8" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock8" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl8" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary8" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews8" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews8" href="">Interviews</a></span><br/><br/>
+				<span id="job_date8" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating8" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction8" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name8" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating8" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo8" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div id="jobobject9" class="row">
+			<div id="left_part" style="width:330px;" class="column">
+				<span class="jt_class"><a id="job_title9" href="">This is the title</a></span><br/>
+				<span class="cn_class"><a id="cname9" href="">Company Name</a></span>
+				<span id="chq9" class="chq_class">Los Angeles, CA</span><br/>
+				<span style="color:#666A6D;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">Stock: </span>
+				<span id="cstock9" class="cstock_class">Name</span><br/><br/>
+				<span class="link_class"><a id="curl9" href="">Overview</a></span><span> | </span>
+				<span class="link_class"><a id="csalary9" href="">Salaries</a></span><span> | </span>
+				<span class="link_class"><a id="creviews9" href="">Reviews</a></span><span> | </span>
+				<span class="link_class"><a id="cinterviews9" href="">Interviews</a></span><br/><br/>
+				<span id="job_date9" class="jd_class">Posted: yyyy-mm-dd</span>
+			</div>
+			<div id="right_part" class="column"  style="margin-top:10px;margin-left:70px;width:300px">
+				<span class="crating">Overall Company Rating</span><br/>
+				<span id="crating9" style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">x.x</span>
+				<img src='rating-star.png' width='13px' height='13px'/><br/>
+				<span id="csatisfaction9" style="color:#183675;font: normal 14px 'calibri lucida grande',tahoma,verdana,arial,sans-serif;">company satisfaction</span><br/><br/>
+				<span style="margin:45px 0px 20px 0px;color:#818181;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;">Overall CEO Rating</span><br/>
+				<span id="ceo_name9" style="color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">CEO Name</span><br/>
+				<span id="ceo_rating9" style="margin:0px 0px 0px 1px;color:#183675;font: normal 12px 'lucida grande',tahoma,verdana,arial,sans-serif;">x% Approve</span>
+			</div>
+			<div id="logo_part" class="column"  style="position:relative;top:28px;right:-95px;">
+				<img id="logo9" src="" width="80px" height="70px"/>
+			</div>
+			<div class="horizontalRule"></div>
+		</div>
+		<div class="horizontalRule"></div>
+		<div class="layout-pagination">
+			<ul id="pagination-digg">
+				<li class="previous-off"><a href="#" onclick="return fetchResultsPaginate('previous');return false">&lt;Previous</a></li>
+				<!--<li id="page_num"  style="color:#183675;font: normal 14px 'lucida grande',tahoma,verdana,arial,sans-serif;padding-top:24px"></li>-->
+				<li id="page_num" class="active">1</li>
+				<!--<li><a href="http://localhost:8080/csci548/ReadJson/next?page=2">2</a></li>
+				<li><a href="http://localhost:8080/csci548/ReadJson/next?page=3">3</a></li>-->
+				<li class="next" ><a href="#" style="padding-top:6px" onclick="return fetchResultsPaginate('next');return false">Next&gt;</a></li>
+			</ul>
+			<br/><br/>
+		</div>
+	</div>
+</body>
+</html>

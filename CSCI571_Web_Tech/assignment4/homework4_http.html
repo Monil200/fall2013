@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<head>
+<title> HW#4 </title>
+<script language="javascript" type="text/javascript">
+
+var xmlDoc
+function getXMLfile(form)
+{
+	var url=form.xml.value;
+	var xmlhttp;
+	
+	if(url.length==0)
+	{	
+		alert("Enter XML path address");
+		return;
+	}
+	
+	if (window.XMLHttpRequest)
+	{// code for IE7+, Firefox, Chrome, Opera, Safari
+       xmlhttp=new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.open("GET",url,false); //open, send, responseXML are
+	xmlhttp.send();                //properties of XMLHTTPRequest
+	if (xmlhttp.status == 404) 
+	{
+		alert("File not found. Incorrect File Name");
+		return;
+	}
+	xmlDoc = xmlhttp.responseXML;
+	if (xmlDoc.getElementsByTagName("parsererror").length > 0)
+	{
+		alert("Error in XML file");
+		return;
+	}
+		
+	//xmlDoc=xmlhttp.responseXML;
+	//return xmlDoc;
+	generateHTML(xmlDoc);
+}
+
+
+function generateHTML(xmldoc)
+{
+var x=xmldoc.getElementsByTagName("PLANT");
+document.write("<center><table border='1'>");
+document.write("<tr><th>COMMON</th><th>BOTANICAL</th><th>ZONE</th><th>LIGHT</th><th>PRICE</th><th>IMAGE</th></tr>");
+for(i=0;i<x.length;i++)
+	{		
+	document.write("<tr><td>");
+	document.write(x[i].getElementsByTagName("COMMON")[0].childNodes[0].nodeValue);
+	//alert(x[i].getElementsByTagName("COMMON")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("BOTANICAL")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("ZONE")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");
+	document.write(x[i].getElementsByTagName("LIGHT")[0].childNodes[0].nodeValue);
+	document.write("</td><td>");	
+	//if(x[i].getElementsByTagName("PRICE")[0].childNodes[0]==null)		
+	if(x[i].getElementsByTagName("PRICE")[0].hasChildNodes())
+		{document.write(x[i].getElementsByTagName("PRICE")[0].childNodes[0].nodeValue);document.write("</td><td>");}
+	else		
+		document.write("</td>N/A<td>"); 											}
+	document.write("<img src="+x[i].getElementsByTagName("IMAGE")[0].childNodes[0].nodeValue+" height=200 width=200>");
+	document.write("</td></tr>");
+	}
+document.write("</table></center>");
+}
+</script>
+</head>
+
+<body>
+	<div align="center" style ="margin-top:200px;">
+		<form name="myform" method="POST" id="myform" style="font-size: large;">
+			<b>Enter URL for Plant Catalog XML File</b>
+			<br><br>
+			<input type="text" id="xml" value="" size="60">
+			<br><br>
+			<input type="button" id="submit" value="Submit Query" onclick="getXMLfile(this.form)">
+			<br><br>
+		</form>
+	</div>
+<noscript>
+</body>
+</html>
