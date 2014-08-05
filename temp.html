@@ -1,0 +1,188 @@
+<html>
+<head>
+	<title>Wikipedia Article Search</title>
+	<link rel="shortcut icon" href="favicon.ico" >	
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+	<style>
+	.titleW{	
+		margin-top:40px;
+		width:450px;
+		height:230px;
+		margin-left:400px;		
+	}	
+	#search
+		{
+		display:block;	
+		width:500px;
+		margin-left:400px;		
+		}
+	#result
+		{
+			display: block;
+		margin-left: 250px;
+		margin-top: 35px;
+		height:700px;
+		width:900px;
+
+		}
+	.hits{		
+		height:40px;	
+		width:420px;	
+		display:block;
+		margin-left: 400px;
+		margin-top: 20px;
+	}
+	#fb
+	{	position: absolute;		
+		margin-top: 10px;
+		height:25px;
+		width:80px;		
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	</style>	
+
+</head>
+<body>
+<div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1443609765885593',
+          status     : true,
+          xfbml      : true
+        });
+      };
+
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "http://connect.facebook.net/en_US/all.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+<div class="titleW">
+	<img src="wiki.jpg"><span style="font-size:40">Search</span>
+</div>
+<form class="form-inline" role="form">
+	<div class="form-group">
+		<div id="search">				
+			<input type="text" size="50" id="searchbox" placeholder="Enter the article to be found" class="form-control">	
+			<input type="button" name="hit" value="Search" id="searchb" class="btn btn-primary">
+		</div>
+	</div>
+</form>
+<div class="hits">
+	<button id="example" type="button" class="btn btn-default" data-toggle="body" relation="popover" data-placement="right" >
+  	Hover here to find search hits for the given Query
+	</button>
+	<div id="fb">
+			<input type="image" src="facebook.jpg" width="80" onclick="return postFacebook()">
+	</div>
+</div>
+<div id="result">
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script> 
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>  
+  
+	var term;		
+	var url="http://en.wikipedia.org/wiki/";
+	var jurl;
+	var i;
+	var tables="";	
+	var hits;	
+
+
+			$(document).ready(function(){					
+  				$("#searchb").click(function(){
+  					term=$("#searchbox").val();
+  					term=term.trim();
+  					if(term.length==0)
+  						{alert("Please enter in the search box");
+  						return;
+  						}
+  					jurl = 'http://10.73.219.84:8000/getLatestAds?category=Housing'+'&callback=fetch';
+					$.ajax({
+					   type: 'GET',
+					    url: jurl,
+					    async: false,
+					    jsonpCallback: 'jsonCallback',
+					    contentType: "application/json",
+					    dataType: 'jsonp',
+					    success: function(json) {
+					    	alert(json.toString());					    					    						   
+					       /*hits=json.query.searchinfo.totalhits;					      
+					       //$("#example").popover({content:hits});				       														       
+					       tables+="<table class='table table-striped, table table-bordered,table table-hover'>";
+					       tables+="<tr><th>#</th><th>Wikipedia Articles</th><th>Timestamp</th></tr>";					       
+					       for(i=0;i<JSON.stringify(json.query.search.length);i++)
+					       		{url+=json.query.search[i].title;
+					       		tables+="<tr><td>"+parseInt(i+1)+"</td>";
+					       		tables+='<td><a href="'+url+'" target="_blank">'+json.query.search[i].title+'</a></td>';
+					       		tables+="<td>"+new Date(json.query.search[i].timestamp)+"</td></tr>";
+					       		url="http://en.wikipedia.org/wiki/";
+					       		}
+					       		tables+="</table>"
+					       		$("#result").html(tables);
+					       		tables="";*/					       
+					    },
+					    error: function(e) {
+					       console.log(e.message);
+					    }
+				});	
+				$('#example').mouseenter(function() {
+			    $('#example').popover({
+			        trigger: 'manual',
+			        placement: 'right',
+			        content: function() {			           
+			             return hits;
+			        }
+			    });
+			    $('#example').popover("show");			  
+				});
+
+				$('#example').mouseleave(function() {
+			    $('#example').popover({
+			        trigger: 'manual',
+			        placement: 'right',
+			        content: function() {			           
+			             return;
+			        }
+			    });
+			    $('#example').popover("hide");			  
+				});	
+			});		
+		});	
+
+		//facebook start
+	function postFacebook()
+	{
+		FB.ui(
+	      {
+	       method: 'feed',
+	       name: 'Google for Wikipedia',
+	       caption: 'Searched wikipedia for \''+term+'\'',
+	       description: (
+	          'Find top ten wikipedia results along with the search hits for the searched term'	         
+	       ),
+	       link: 'http://www-scf.usc.edu/~monilasp/sphere/sphere_wiki_bootstrap.html',
+	       picture: 'http://www.technorms.com/wp-content/uploads/2012/01/WikipediaAndroidAppicon_thumb.png',	      
+	      },
+	      function(response) {	      	
+	      	//alert(response.post_id+""+response);
+	        if (response && response.post_id) {
+	          alert('Post was published.');
+	        } else {
+	          alert('Post was not published.');
+	        }	       
+	      }
+	    );
+	 }
+	//facebook end
+</script>
+<noscript>
+</body>
+</html>
